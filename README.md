@@ -1,1 +1,1 @@
-# digit_recognizer
+# digitre
