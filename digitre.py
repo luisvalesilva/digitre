@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('digit_recognizer.html')
+    return render_template('digitre.html')
 
 @app.route('/about')
 def about():
