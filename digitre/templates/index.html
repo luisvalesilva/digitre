@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<!--
+	Design based on Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Digitre</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<a href="/" class="logo">Digitre</a>
+				<!--
+				<nav class="right">
+					<a href="/" class="button alt">Home</a>
+				</nav>
+				-->
+			</header>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="content">
+					<h1>Handwritten digit recognizer</h1>
+					<p><strong>Digitre</strong> is a simple machine learning<br />digit recognizer app.</p>
+					<ul class="actions">
+						<li><a href="#one" class="button scrolly">Try it!</a></li>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+		<section id="one" class="wrapper style1 special">
+			<div class="inner flex flex-3">
+				<div class="flex-item box">
+					<!-- <div class="image fit">
+						<img src="images/pic02.jpg" alt="" />
+					</div> -->
+					<div class="content">
+						<h3>1. You draw a digit</h3>
+						<p>Draw a digit from 0 to 9 below and submit it for recognition.</p>
+						</div>
+					</div>
+					<div class="flex-item box">
+						<div class="content">
+							<h3>2. Digitre "reads" it</h3>
+							<p>Digitre uses Machine learning to recognize the handwritten digit.</p>
+						</div>
+					</div>
+					<div class="flex-item box">
+						<div class="content">
+							<h3>3. Digitre identifies it</h3>
+							<p>The output is a probability distribution across the 10 digits.</p>
+						</div>
+					</div>
+				</div>
+				<!--
+				<ul class="actions">
+					<li><a href="#two" class="button special scrolly">Try it</a></li>
+				</ul>
+				-->
+		</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper special">
+				<div class="content">
+					<h2>Draw a digit from 0 to 9</h2>
+					<canvas id="paint" width="200" height="200" style="background-color:white; border: 1px solid #000000;">Update your browser to support HTML5 Canvas</canvas>
+					<br />
+					<a id="clear" data-tool="eraser" class="button special small">Clear</a>
+					&nbsp;&nbsp;
+					<a href=# id=push_data class="button small">Submit</a>
+					<br /><br />
+					<center><textarea id="data-paint" style="width:40%"></textarea></center>
+					<br /><br />
+					<span id=result>?</span>
+
+					
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>About Digitre</h2>
+					<p>Read more about the technical details (geek alert):
+					<br />
+					<a href="/about" class="icon fa-book fa-2x"></a></p>
+				</div>
+				<br />
+				<div class="copyright">
+					&copy; Luis Vale Silva 2016 | Design based on Intensify from <a target="_blank" href="https://templated.co">TEMPLATED</a>.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/static/assets/js/skel.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+			<script src="/static/paint.js"></script>
+			<script type=text/javascript>
+				$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+			</script>
+			<script type=text/javascript>
+  $(function() {
+    $('a#push_data').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_get_digit', {
+        digit: $('textarea[id="data-paint"]').val()
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+
+	</body>
+</html>

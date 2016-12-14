@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!--
+	Designed based on Intensify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Digitre</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="/" class="logo">Digitre</a>
+				<!--
+				<nav class="right">
+					<a href="/" class="button alt">Home</a>
+				</nav>
+				-->
+			</header>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h1>About</h1>
+						<p>Digitre: handwritten digit recognizer</p>
+					</header>
+					<br /><br />
+					<p><strong>Digitre</strong> is a small interactive web app using Machine learning to identify handwritten digits submited by the user.</p>
+					<p>You can read a more in-depth technical description of <strong>Digitre</strong> in a <a href="">blog post</a> I wrote about it in my <a target="_blank" href="http://luisvalesilva.com/datasimple">Data Science blog</a>.</p>
+					<h4>1. Front end</h4>
+					<p>Bootstrap-based open source template design... HTML canvas element and javascript to build the drawing board...</p>
+					<h4>2. Pushing data to the back end</h4>
+					<p>JQuery code to push base64-encoded images to Flask server-side code (Python web framework)...</p>
+					<h4>3. Handwritten digit recognition</h4>
+					<p>The handwritten digit recgnition is done by a convolutional neural network (CNN) Machine learning model implemented using the Python interface of Google's Tensorflow open source software library...</p>
+					<h4>4. In the pipeline</h4>
+					<p>My next step (as soon as I find the time...) will be to use user-submitted digits to train the model. The idea is to store user-submitted digits, along with the model output and user-inputed correct digit, and use the data to train and improve the model.</p>
+					<!--
+					<p><span class="image left"><img src="/static/images/me.jpg" alt="Me" class="image round" /></span>Hey there, my name is Luis! If you want to learn more about me, check out my <a target="_blank" href="http://luisvalesilva.com">personal website</a>.</p>
+					<p>I am really interested in Data Science and Machine Learning. <strong>Digitre</strong> is a little side project of mine, in which I developed an interactive handwritten digit recognizer. I wanted to use the power of Machine learning</p>
+					-->
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<a href="/" class="icon fa-home fa-2x"></a>&nbsp;&nbsp;
+					<br />
+					<p>Back to main page</p>
+				</div>
+				<br />
+				<div class="copyright">
+					&copy; Luis Vale Silva 2016 | Design based on Intensify from <a target="_blank" href="https://templated.co">TEMPLATED</a>.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+		<!--
+			<script src=" {{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+			<script src=" {{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+			<script src=" {{ url_for('static', filename='assets/js/skel.min.js') }}"></script>
+			<script src=" {{ url_for('static', filename='assets/js/util.js') }}"></script>
+			<script src=" {{ url_for('static', filename='assets/js/main.js') }}"></script>
+		-->
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/static/assets/js/skel.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+
+
+	</body>
+</html>
