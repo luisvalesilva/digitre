@@ -12,7 +12,7 @@ __status__ = "Development"
 
 
 from flask import Flask, render_template, request, jsonify
-import lib.helpers as helpers
+import helpers as helpers
 
 app = Flask(__name__)
 
