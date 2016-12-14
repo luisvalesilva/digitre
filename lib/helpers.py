@@ -25,7 +25,7 @@ def b64_str_to_np(base64_str):
     pimg = Image.open(buf)
     img = np.array(pimg)
 
-    print('Dimesnions of numpy ndarray: ', img.shape)
+    print('Dimensions of numpy ndarray: ', img.shape)
     return(img)
 
 
