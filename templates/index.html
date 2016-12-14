@@ -58,7 +58,7 @@
 					</div>
 				</div>
 				<ul class="actions">
-					<li><a href="#two" class="button special scrolly">Git it a try</a></li>
+					<li><a href="#two" class="button special scrolly">Try it</a></li>
 				</ul>
 		</section>
 
@@ -66,13 +66,16 @@
 			<section id="two" class="wrapper special">
 				<div class="content">
 					<h2>Draw a digit from 0 to 9</h2>
-					<canvas id="tools_sketch" width="300" height="300" style="background-color:white; border: 1px solid #000000;">Update your browser to support HTML5 Canvas</canvas>
 					<br />
-					<a href="#tools_sketch" data-tool="marker" class="button special small">Marker</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="#tools_sketch" data-tool="eraser" class="button special small">Eraser</a>
+					<a id="clear" data-tool="eraser" class="button special small">Clear</a>
 					<br /><br />
-					<a href="#tools_sketch" data-download="png" class="button small">Submit</a>
+					<canvas id="paint" width="200" height="200" style="background-color:white; border: 1px solid #000000;">Update your browser to support HTML5 Canvas</canvas>
+					<center><textarea id="data-paint" style="width:40%"></textarea></center>
+					<br /><br />
+					<a href=# id=push_data class="button small">Submit</a>
+					<span id=result>?</span>
+
+					
 				</div>
 			</section>
 
@@ -94,15 +97,22 @@
 			<script src="/static/assets/js/skel.min.js"></script>
 			<script src="/static/assets/js/util.js"></script>
 			<script src="/static/assets/js/main.js"></script>
-
-			<!-- Using skeptch.js for drawing the digits (https://github.com/intridea/sketch.js) -->
-			<script src="http://code.jquery.com/jquery-latest.js"></script>
-			<script src="../static/sketch.js"></script>
-			<script type="text/javascript">
-				$(function() {
-					$("#tools_sketch").sketch();
-			});
+			<script src="/static/paint.js"></script>
+			<script type=text/javascript>
+				$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			</script>
+			<script type=text/javascript>
+  $(function() {
+    $('a#push_data').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_get_digit', {
+        digit: $('textarea[id="data-paint"]').val()
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
 
 	</body>
 </html>
