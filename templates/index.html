@@ -27,7 +27,7 @@
 					<h1>Handwritten digit recognizer</h1>
 					<p><strong>Digitre</strong> is a simple machine learning<br />digit recognizer app.</p>
 					<ul class="actions">
-						<li><a href="#one" class="button scrolly">How it works</a></li>
+						<li><a href="#one" class="button scrolly">Try it!</a></li>
 					</ul>
 				</div>
 			</section>
@@ -41,38 +41,41 @@
 					</div> -->
 					<div class="content">
 						<h3>1. You draw a digit</h3>
-						<p>Use the canvas to draw a digit from 0 to 9 and submit it for recognition.</p>
+						<p>Draw a digit from 0 to 9 below and submit it for recognition.</p>
 						</div>
 					</div>
 					<div class="flex-item box">
 						<div class="content">
 							<h3>2. Digitre "reads" it</h3>
-							<p>Digitre uses Machine learning (neural network) to recognize the digit.</p>
+							<p>Digitre uses Machine learning to recognize the handwritten digit.</p>
 						</div>
 					</div>
 					<div class="flex-item box">
 						<div class="content">
-							<h3>3. Digitre learns</h3>
-							<p>The digit and its correct id are used to train and improve the model.</p>
+							<h3>3. Digitre identifies it</h3>
+							<p>The output is a probability distribution across the 10 digits.</p>
 						</div>
 					</div>
 				</div>
+				<!--
 				<ul class="actions">
 					<li><a href="#two" class="button special scrolly">Try it</a></li>
 				</ul>
+				-->
 		</section>
 
 		<!-- Two -->
 			<section id="two" class="wrapper special">
 				<div class="content">
 					<h2>Draw a digit from 0 to 9</h2>
+					<canvas id="paint" width="200" height="200" style="background-color:white; border: 1px solid #000000;">Update your browser to support HTML5 Canvas</canvas>
 					<br />
 					<a id="clear" data-tool="eraser" class="button special small">Clear</a>
+					&nbsp;&nbsp;
+					<a href=# id=push_data class="button small">Submit</a>
 					<br /><br />
-					<canvas id="paint" width="200" height="200" style="background-color:white; border: 1px solid #000000;">Update your browser to support HTML5 Canvas</canvas>
 					<center><textarea id="data-paint" style="width:40%"></textarea></center>
 					<br /><br />
-					<a href=# id=push_data class="button small">Submit</a>
 					<span id=result>?</span>
 
 					
@@ -82,7 +85,8 @@
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="inner">
-					<h2>Geek alert</h2>
+					<h2>About Digitre</h2>
+					<h3>(geek alert)</h3>
 					<span class="icon fa-question fa-2x"></span>&nbsp;&nbsp;<a href="/about">Learn all about Digitre</a>
 				</div>
 				<br />
