@@ -20,7 +20,7 @@ app = Flask(__name__)
 @app.route('/_get_digit')
 def get_digit():
     """Get digit drawn by user as base64 image and convert to numpy array"""
-    digit = request.args.get('digit', 0, type=None)
+    digit = request.args.get('digit', 0, type=str)
     helpers.b64_str_to_np(digit)
     return jsonify(result=digit)
 
