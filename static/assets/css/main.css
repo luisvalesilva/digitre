@@ -2097,7 +2097,7 @@
 		}
 
 		.image.left, .image.right {
-			max-width: 40%;
+			max-width: 40%;	
 		}
 
 			.image.left img, .image.right img {
@@ -2119,11 +2119,11 @@
 		.image.fit {
 			display: block;
 			margin: 0 0 2em 0;
-			width: 100%;
+			width: 40%;
 		}
 
 			.image.fit img {
-				width: 100%;
+				width: 40%;
 			}
 
 		.image.round img {
@@ -2133,11 +2133,11 @@
 		.image.main {
 			display: block;
 			margin: 0 0 3em 0;
-			width: 100%;
+			width: 40%;
 		}
 
 			.image.main img {
-				width: 100%;
+				width: 40%;
 			}
 
 /* List */
