@@ -38,8 +38,8 @@ def lowest_non_zero(x):
     return np.nonzero(x)[0][0]
 
 
-def crop_and_resize(img_ndarray):
-    """Crop white space around digit and resize to 28x28"""
+def crop_img(img_ndarray):
+    """Crop white space around digit"""
     # Length of zero pixel values for rows and columns
     # Across rows
     first_row = np.nonzero(img_ndarray)[0].min()
@@ -50,10 +50,10 @@ def crop_and_resize(img_ndarray):
     last_col = np.nonzero(img_ndarray)[1].max()
 
     # Crop by longest non-zero to make sure all is kept
-    first = min(first_row, first_col)
-    last = max(last_row, last_col)
+    # (add some padding: 10px)
+    first = min(first_row, first_col) - 10
+    last = max(last_row, last_col) + 10
 
-    print(last-first)
     # Minimum size of 28x28
     if last-first < 28:
         if first + 28 < 200 :
@@ -62,13 +62,16 @@ def crop_and_resize(img_ndarray):
             first = last - 28
 
     # Crop image
-    img_ndarray = img_ndarray[first:last, first:last]
+    return img_ndarray[first:last, first:last]
 
-    return img_ndarray.thumbnail((28, 28), Image.ANTIALIAS)
+def resize_img(img_ndarray):
+    """Resize digit to 28x28"""
+    img = Image.fromarray(img_ndarray)
+    img.thumbnail((28, 28), Image.ANTIALIAS)
 
+    return np.array(img)
 
 
 def flatten_img(img_ndarray):
     """Flatten digit image as numpy ndarray to 1D"""
-
     return img_ndarray.flatten()
