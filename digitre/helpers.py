@@ -2,9 +2,9 @@
 # coding:utf-8
 
 """
-    Digitre
-    ~~~~~~~
-    A simple application...
+    Digitre helpers
+    ~~~~~~~~~~~~~~~
+    Digitre helper functions
     :copyright: (c) 2016 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
@@ -31,11 +31,7 @@ def b64_str_to_np(base64_str):
     print('Dimensions of numpy ndarray: ', img.shape)
 
     # Keep only 4th pixel value in 3rd dimension (first 3 are all zeros)
-    return img[:,:,3]
-
-def lowest_non_zero(x):
-    """Determine index of first non-zero value"""
-    return np.nonzero(x)[0][0]
+    return img[:, :, 3]
 
 
 def crop_img(img_ndarray):
@@ -44,25 +40,32 @@ def crop_img(img_ndarray):
     # Across rows
     first_row = np.nonzero(img_ndarray)[0].min()
     last_row = np.nonzero(img_ndarray)[0].max()
-    
+    middle_row = int(np.mean([last_row, first_row]))
     # Across cols
     first_col = np.nonzero(img_ndarray)[1].min()
     last_col = np.nonzero(img_ndarray)[1].max()
+    middle_col = int(np.mean([last_col, first_col]))
 
     # Crop by longest non-zero to make sure all is kept
     # (add some padding: 10px)
     first = min(first_row, first_col) - 10
     last = max(last_row, last_col) + 10
+    length = last - first
 
     # Minimum size of 28x28
-    if last-first < 28:
-        if first + 28 < 200 :
-            last = first + 28
-        else:
-            first = last - 28
+    length = max(length, 28)
+
+    half_length = int(length / 2)
+
+    # Make sure even the shorter dimension is centered
+    first_row = middle_row - half_length
+    last_row = middle_row + half_length
+    first_col = middle_col - half_length
+    last_col = middle_col + half_length
 
     # Crop image
-    return img_ndarray[first:last, first:last]
+    return img_ndarray[first_row:last_row, first_col:last_col]
+
 
 def resize_img(img_ndarray):
     """Resize digit to 28x28"""
