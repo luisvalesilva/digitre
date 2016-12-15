@@ -24,7 +24,7 @@ var extendCanvas = function (canvas) {
   try {
     canvas.ctx = canvas.getContext('2d');
     canvas.ctx.strokeStyle = "black";
-    canvas.ctx.lineWidth = 5;
+    canvas.ctx.lineWidth = 4;
     canvas.lineJoin = "round";
     canvas.ctx.scale(1, 1);
     canvas.isLocked = false;
