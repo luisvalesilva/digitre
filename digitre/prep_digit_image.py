@@ -28,8 +28,6 @@ def b64_str_to_np(base64_str):
     pimg = Image.open(buf)
     img = np.array(pimg)
 
-    print('Dimensions of numpy ndarray: ', img.shape)
-
     # Keep only 4th pixel value in 3rd dimension (first 3 are all zeros)
     return img[:, :, 3]
 
