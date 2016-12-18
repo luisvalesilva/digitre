@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding:utf-8
 
 """
     Digitre helpers
     ~~~~~~~~~~~~~~~
-    Digitre helper functions
+    Digitre helper functions for digit image preprocessing
     :copyright: (c) 2016 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
@@ -45,9 +45,9 @@ def crop_img(img_ndarray):
     middle_col = int(np.mean([last_col, first_col]))
 
     # Crop by longest non-zero to make sure all is kept
-    # (add some padding: 10px)
-    first = min(first_row, first_col) - 10
-    last = max(last_row, last_col) + 10
+    # (add some padding: 1px)
+    first = min(first_row, first_col) - 1
+    last = max(last_row, last_col) + 1
     length = last - first
 
     # Minimum size of 28x28
