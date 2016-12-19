@@ -24,7 +24,7 @@ var extendCanvas = function (canvas) {
   try {
     canvas.ctx = canvas.getContext('2d');
     canvas.ctx.strokeStyle = "black";
-    canvas.ctx.lineWidth = 4;
+    canvas.ctx.lineWidth = 16;
     canvas.lineJoin = "round";
     canvas.ctx.scale(1, 1);
     canvas.isLocked = false;
@@ -101,7 +101,7 @@ var extendCanvas = function (canvas) {
           if (offset.x < 0 || offset.y < 0) {
             throw {
               name: "Painting error",
-              message: "Image has a negative offset.", 
+              message: "Image has a negative offset.",
               toString: function () { return this.name + ": " + this.message; }
             };
           }
@@ -109,7 +109,7 @@ var extendCanvas = function (canvas) {
           offset = { x: 0, y: 0 };
         }
         thisCanvas.ctx.drawImage(image, offset.x, offset.y);
-      };      
+      };
     };
 
     /**
@@ -177,7 +177,7 @@ var extendCanvas = function (canvas) {
     //Event when the click is released
     function on_mouseup(e) {
       if (!canvas.isLocked) {
-        if (!canvas.hasDrawn) {//If there was no move, draw a single point            
+        if (!canvas.hasDrawn) {//If there was no move, draw a single point
           var pos = canvas.getCursorCoords(e);
           canvas.ctx.rect(pos.x, pos.y, 1, 1);
         }
@@ -199,7 +199,7 @@ var extendCanvas = function (canvas) {
     //If someting went wrong, notify the user.
     console.error("Canvas not initialized. Painting is not activated.");
   }
-  
+
   return canvas;
 };
 
