@@ -62,7 +62,9 @@ def crop_img(img_ndarray):
     last_col = middle_col + half_length
 
     # Crop image
-    return img_ndarray[first_row:last_row, first_col:last_col]
+    img_ndarray[first_row:last_row, first_col:last_col]
+    # Add padding (15px of zeros)
+    return np.lib.pad(img_ndarray, 15, 'constant', constant_values=(0))
 
 
 def resize_img(img_ndarray):
