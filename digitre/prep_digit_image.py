@@ -31,7 +31,6 @@ def b64_str_to_np(base64_str):
     # Keep only 4th pixel value in 3rd dimension (first 3 are all zeros)
     return img[:, :, 3]
 
-
 def crop_img(img_ndarray):
     """Crop white space around digit"""
     # Length of zero pixel values for rows and columns
@@ -45,15 +44,14 @@ def crop_img(img_ndarray):
     middle_col = int(np.mean([last_col, first_col]))
 
     # Crop by longest non-zero to make sure all is kept
-    # (add some padding: 1px)
-    first = min(first_row, first_col) - 1
-    last = max(last_row, last_col) + 1
-    length = last - first
-
+    row_length = last_row - first_row
+    col_length = last_col - first_col
+    length = max(row_length, col_length)
     # Minimum size of 28x28
     length = max(length, 28)
-
-    half_length = int(length / 2)
+    
+    # Get half length to add to middle point (add some padding: 1px)
+    half_length = int(length / 2) + 1
 
     # Make sure even the shorter dimension is centered
     first_row = middle_row - half_length
@@ -64,7 +62,7 @@ def crop_img(img_ndarray):
     # Crop image
     img_ndarray[first_row:last_row, first_col:last_col]
     # Add padding (15px of zeros)
-    return np.lib.pad(img_ndarray, 15, 'constant', constant_values=(0))
+    return np.lib.pad(img_ndarray, 5, 'constant', constant_values=(0))
 
 
 def resize_img(img_ndarray):
