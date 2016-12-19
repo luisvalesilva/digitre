@@ -73,6 +73,14 @@ def resize_img(img_ndarray):
     return np.array(img)
 
 
+def min_max_scaler(img_ndarray, final_range=(0, 1)):
+    """Scale features to given range"""
+    min = final_range[0]
+    max = final_range[1]
+
+    img_std = (img_ndarray - img_ndarray.min(axis=0)) / (img_ndarray.max(axis=0) - img_ndarray.min(axis=0))
+    return img_std * (max - min) + min
+
 def flatten_img(img_ndarray):
     """Flatten digit image as numpy ndarray to 1D"""
     return img_ndarray.flatten()
