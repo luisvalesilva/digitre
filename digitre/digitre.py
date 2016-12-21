@@ -58,6 +58,9 @@ def classify(digit):
     return model.predict(digit)
 
 
+def prob_distribution_plot(prediction):
+    pass    
+
 #@app.route('/_get_digit')
 #def get_digit():
 #    """Get digit drawn by user as base64 image and recognize it"""
