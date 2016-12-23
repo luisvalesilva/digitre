@@ -72,7 +72,12 @@ def get_digit():
     """Get digit drawn by user as base64 image and recognize it"""
     digit = request.args.get('digit', 0, type=str)
     digit = preprocess_digit_image(digit)
-    prediction = classify(digit)
+    prediction = classify(digit)[0]
+    max_idx = np.argmax(prediction)
+    max_val = prediction[max_idx]
+    prob = np.around(max_val, 3) * 100
+    prediction = str(max_idx) + ' (' + str(prob) + '% probability)'
+    #prediction=1
     return jsonify(result=prediction)
 
 @app.route('/')
