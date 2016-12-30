@@ -1,11 +1,13 @@
 click==6.6
 Flask==0.11.1
+h5py==2.6.0
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
 numpy==1.11.2
 Pillow==3.4.2
 protobuf==3.0.0
+scipy==0.18.1
 six==1.10.0
 tensorflow==0.11.0rc1
 tflearn==0.2.1
