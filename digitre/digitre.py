@@ -76,7 +76,7 @@ def get_digit():
     max_idx = np.argmax(prediction)
     max_val = prediction[max_idx]
     prob = np.around(max_val, 3) * 100
-    prediction = str(max_idx) + ' (' + str(prob) + '% probability)'
+    prediction = '{} ({} % probability)'.format(str(max_idx), str(prob))
     return jsonify(result=prediction)
 
 @app.route('/')
