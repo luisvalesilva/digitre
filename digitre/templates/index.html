@@ -76,10 +76,11 @@
 					<br /><br />
 					<!-- To see the base64-encoded digit image remove CSS rule 'display:none;' from 'textarea' style-->
 					<center><textarea id="data-paint" style="width:40%; display:none;"></textarea></center>
-					<br /><br />
+					<br />
 					<span style="color: #f6755e; font-size: 26pt" id=result></span>
-
-					
+					<!-- bar chart canvas element -->
+					<br/>
+					<canvas id="chart" width="300" height="300"></canvas>
 				</div>
 			</section>
 
@@ -108,17 +109,54 @@
 				$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			</script>
 			<script type=text/javascript>
-  $(function() {
-    $('a#push_data').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_get_digit', {
-        digit: $('textarea[id="data-paint"]').val()
-      }, function(data) {
-        $("#result").text(data.result);
-      });
-      return false;
-    });
-  });
-</script>
+				$(function() {
+					$('a#push_data').bind('click', function() {
+						$.getJSON($SCRIPT_ROOT + '/_get_digit', {
+						digit: $('textarea[id="data-paint"]').val()
+						}, function(data) {
+						$("#result").text(data.result);
+						});
+						return false;
+					});
+				});
+			</script>
+			<script src="/static/assets/js/Chart.min.js"></script>
+			<script>
+				// bar chart data
+				var barData = {
+					labels : [{% for item in labels %}
+					"{{item}}",
+					{% endfor %}],
+					datasets : [
+						{
+							label: "My First dataset",
+							fillColor: "#f6755e",
+							strokeColor: "#f6755e",
+							pointColor: "#f6755e",
+							data : [{% for item in values %}
+								{{item}},
+								{% endfor %}]
+							}
+						]
+					}
+				
+				// get bar chart canvas
+				var mychart = document.getElementById("chart").getContext("2d");
+				steps = 10
+				max = 100
+				// draw bar chart
+				new Chart(mychart).Bar(barData, {
+					scaleOverride: true,
+					scaleSteps: steps,
+					scaleStepWidth: Math.ceil(max / steps),
+					scaleStartValue: 0,
+					scaleShowVerticalLines: true,
+					scaleShowGridLines : true,
+					barShowStroke : true,
+					scaleShowLabels: true
+				});
+						
+			</script>
 
 	</body>
 </html>

@@ -18,9 +18,7 @@ from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
-
 import numpy as np
-
 import prep_digit_image as prep
 
 
@@ -81,7 +79,10 @@ def get_digit():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    """Render landing page"""
+    labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    values = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+    return render_template('index.html', values=values, labels=labels)
 
 @app.route('/about')
 def about():
