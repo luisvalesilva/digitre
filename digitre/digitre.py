@@ -11,7 +11,7 @@ __author__ = "Luis Vale Silva"
 __status__ = "Development"
 
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Markup
 import os
 import tflearn
 from tflearn.layers.core import input_data, dropout, fully_connected
