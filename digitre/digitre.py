@@ -50,7 +50,7 @@ def preprocess_digit_image(base64_str):
     digit = prep.crop_img(digit)
     digit = prep.resize_img(digit)
     digit = prep.min_max_scaler(digit, final_range=(0, 1))
-    return np.reshape(digit, (1, 28, 28, 1), order='C')
+    return np.reshape(digit, (-1, 28, 28, 1), order='C')
 
 def classify(digit):
     return model.predict(digit)
