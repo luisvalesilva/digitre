@@ -75,11 +75,13 @@ def resize_img(img_ndarray):
 
 def min_max_scaler(img_ndarray, final_range=(0, 1)):
     """Scale features to given range"""
-    min = final_range[0]
-    max = final_range[1]
+    px_min = final_range[0]
+    px_max = final_range[1]
 
-    img_std = (img_ndarray - img_ndarray.min(axis=0)) / (img_ndarray.max(axis=0) - img_ndarray.min(axis=0))
-    return img_std * (max - min) + min
+    #img_std = (img_ndarray - img_ndarray.min(axis=0)) / (img_ndarray.max(axis=0) - img_ndarray.min(axis=0))
+    # Hard code pixel vlue range
+    img_std = img_ndarray / 255
+    return img_std * (px_max - px_min) + px_min
 
 def flatten_img(img_ndarray):
     """Flatten digit image as numpy ndarray to 1D"""
