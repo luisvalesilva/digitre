@@ -76,6 +76,7 @@
 					<br /><br />
 					<!-- To see the base64-encoded digit image remove CSS rule 'display:none;' from 'textarea' style-->
 					<center><textarea id="data-paint" style="width:40%; display:none;"></textarea></center>
+					<!-- Highest probability digit -->
 					<br />
 					<span style="color: #f6755e; font-size: 26pt" id=result></span>
 					<!-- bar chart canvas element -->
@@ -120,6 +121,7 @@
 					});
 				});
 			</script>
+			
 			<script src="/static/assets/js/Chart.min.js"></script>
 			<script>
 				// bar chart data
@@ -154,8 +156,7 @@
 					scaleShowGridLines : true,
 					barShowStroke : true,
 					scaleShowLabels: true
-				});
-						
+				});		
 			</script>
 
 	</body>
