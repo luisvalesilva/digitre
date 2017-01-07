@@ -50,14 +50,14 @@
 					<div class="flex-item box">
 						<div class="content">
 							<i class="fa fa-4x fa-eye" aria-hidden="true"></i>
-							<h3>2. Digitre "reads" it</h3>
-							<p>Digitre uses Machine learning to recognize the handwritten digit.</p>
+							<h3>2. Digitre reads it</h3>
+							<p>Digitre uses Machine Learning to recognize the handwritten digit.</p>
 						</div>
 					</div>
 					<div class="flex-item box">
 						<div class="content">
 							<i class="fa fa-4x fa-check" aria-hidden="true"></i>
-							<h3>3. Digitre identifies it</h3>
+							<h3>3. Digitre returns output</h3>
 							<p>Digitre returns the identified digit along with its probability.</p>
 						</div>
 					</div>
@@ -77,8 +77,9 @@
 					<!-- To see the base64-encoded digit image remove CSS rule 'display:none;' from 'textarea' style-->
 					<center><textarea id="data-paint" style="width:40%; display:none;"></textarea></center>
 					<!-- Highest probability digit -->
+					<span style="color: #f6755e; font-size: 36pt;" id=result></span>
 					<br />
-					<span style="color: #f6755e; font-size: 26pt" id=result></span>
+					<span style="color: #f6755e; font-size: 20pt;" id=probability></span>
 					<!-- bar chart canvas element -->
 					<br/>
 					<canvas id="chart" width="300" height="300"></canvas>
@@ -116,6 +117,7 @@
 						digit: $('textarea[id="data-paint"]').val()
 						}, function(data) {
 						$("#result").text(data.result);
+						$("#probability").text(data.probability);
 						});
 						return false;
 					});
