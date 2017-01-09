@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+
 """
     Digitre
     ~~~~~~~
-    A simple application...
+    A simple Machine Learning application to recognize handwritten digits.
+    
     :copyright: (c) 2016 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """

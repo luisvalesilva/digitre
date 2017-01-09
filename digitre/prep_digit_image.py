@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# encoding:utf-8
 
 """
-    Digitre helpers
-    ~~~~~~~~~~~~~~~
-    Digitre helper functions for digit image preprocessing
+    Digitre
+    ~~~~~~~
+    A simple Machine Learning application to recognize handwritten digits.
+    
     :copyright: (c) 2016 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
