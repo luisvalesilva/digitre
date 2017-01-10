@@ -35,6 +35,7 @@ __status__ = "Development"
 import os
 import sys
 import time
+import numpy as np
 
 import digitre_preprocessing as prep
 
@@ -143,17 +144,6 @@ def save(model, file_name='cnn.tflearn'):
 
 
 def main():
-    """
-    Run program from command line.
-
-    Defines and trains handwritten digit classifier. Writes trained model to disk
-    with the chosen file name.
-
-    Parameters
-    ----------
-    file_name: string
-        Name to assign model file written to disk
-    """
     t0 = time.time()
 
     print('-------------------------------------')
@@ -165,12 +155,19 @@ def main():
     print('... Loading training and test data')
     X, Y, testX, testY = load_data()
 
+    if args.all_data:
+        print('... Merging train and test data for training on all data')
+        X = np.concatenate((X, testX), axis=0)
+        Y = np.concatenate((Y, testY), axis=0)
+
     print('... Building model')
     model = build()
 
     print('... Training model')
+    if not args.n_epoch:
+        args.n_epoch = 20
     t1 = time.time()
-    fit(model, X, Y, testX, testY)
+    fit(model, X, Y, testX, testY, n_epoch=int(args.n_epoch))
     print('-----')
     print('Completed training in')
     prep.print_elapsed_time(t1)
@@ -185,6 +182,7 @@ def main():
     print('Completed in')
     prep.print_elapsed_time(t0)
     print('Bye!')
+    print('-------------------------------------')
 
 
 if __name__ == '__main__':
@@ -192,6 +190,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train handwritten digit classifier.')
     parser.add_argument('-f', '--file_name', help=('name of model file written to disk'),
                         required=True)
+    parser.add_argument('-a', '--all_data', action='store_true',
+                        help=('whether to train on all 65,000 samples'),
+                        default=False)
+    parser.add_argument('-e', '--n_epoch', help=('number of training epochs'))
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.1')
 
     # Also print help if no arguments are provided
