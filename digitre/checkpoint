@@ -1,2 +1,0 @@
-model_checkpoint_path: "cnn_fullycon.tflearn"
-all_model_checkpoint_paths: "cnn_fullycon.tflearn"

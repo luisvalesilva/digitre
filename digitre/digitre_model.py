@@ -34,6 +34,10 @@ __author__ = "Luis Vale Silva"
 __status__ = "Development"
 
 import os
+import sys
+import time
+
+import digitre_preprocessing as prep
 
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
@@ -97,7 +101,7 @@ def build():
 
     return model
 
-def fit(model, X, Y, testX, testY):
+def fit(model, X, Y, testX, testY, n_epoch=20, run_id='cnn_mnist'):
     """
     Fit (train) classification model.
 
@@ -105,15 +109,23 @@ def fit(model, X, Y, testX, testY):
     ----------
     model: TFLearn model
         Built and defined model.
-    X: Training data
-    Y: Training labels
-    testX: Test data
-    testY: Test labels
+    X: numpy ndarray, shape=(55000, 28, 28, 1)
+        Training data
+    Y: numpy ndarray, shape=(55000, 10)
+        Training labels
+    testX: numpy ndarray, shape=(10000, 28, 28, 1)
+        Test data
+    testY: numpy ndarray, shape=(10000, 10)
+        Test labels
+    n_epoch: int, default=20
+        Number of training epochs
+    run_id: str, default='cnn_mnist'
+        ID to assign the current run
     """
 
-    model.fit({'input': X}, {'target': Y}, n_epoch=20,
+    model.fit({'input': X}, {'target': Y}, n_epoch=n_epoch,
               validation_set=({'input': testX}, {'target': testY}),
-              snapshot_step=100, show_metric=True, run_id='cnn_mnist')
+              snapshot_step=100, show_metric=True, run_id=run_id)
 
 def save(model, file_name='cnn.tflearn'):
     """
@@ -131,7 +143,7 @@ def save(model, file_name='cnn.tflearn'):
     model.save(os.path.join(cwd, file_name))
 
 
-def main(file_name):
+def main():
     """
     Run program from command line.
 
@@ -165,8 +177,8 @@ def main(file_name):
     prep.print_elapsed_time(t1)
     print('-----')
 
-    print('... Saving trained model as "', file_name, '"')
-    save(model, file_name=file_name)
+    print('... Saving trained model as "', args.file_name, '"')
+    save(model, file_name=args.file_name)
 
     print()
     print()
@@ -178,8 +190,8 @@ def main(file_name):
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description="Train handwritten digit classifier.")
-    parser.add_argument('-f', '--file_name', help=('name of model file written to disk',
+    parser = argparse.ArgumentParser(description='Train handwritten digit classifier.')
+    parser.add_argument('-f', '--file_name', help=('name of model file written to disk'),
                         required=True)
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.1')
 

@@ -56,7 +56,7 @@ class Classifier(object):
         cwd = os.path.dirname(__file__)
 
         # Define and load the model
-        self.model = model.build()
+        self.model = digitre_model.build()
         self.model.load(os.path.join(cwd, file_name))
 
 
