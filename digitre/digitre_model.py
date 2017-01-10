@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
 """
@@ -134,9 +133,9 @@ def save(model, file_name='cnn.tflearn'):
     Parameters
     ----------
     model: TFLearn model
-        Trained model.
+        Trained model
     file_name: string, default='cnn.tflearn'
-        Name to assign model file.
+        Name to assign model file written to disk
     """
 
     cwd = os.path.dirname(__file__)
@@ -153,7 +152,7 @@ def main():
     Parameters
     ----------
     file_name: string
-        Name to assign model file written to disk.
+        Name to assign model file written to disk
     """
     t0 = time.time()
 

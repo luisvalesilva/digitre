@@ -52,7 +52,7 @@ def b64_str_to_np(base64_str):
         String of base64-encoded image of user drawing in html canvas.
     Returns
     -------
-    Image as 3D numpy ndarray
+    Image as 2D numpy ndarray
     """
 
     if "base64" in base64_str:
@@ -72,11 +72,11 @@ def crop_img(img_ndarray):
 
     Parameters
     ----------
-    img_ndarray: 3D numpy ndarray, shape=[var, var, 1] (depending on canvas size)
+    img_ndarray: 3D numpy ndarray, shape=(200, 200) (determined by canvas size)
         Image to crop (drawn by user).
     Returns
     -------
-    Cropped image as 3D numpy ndarray
+    Cropped image as 2D numpy ndarray
     """
     # Length of zero pixel values for rows and columns
     # Across rows
@@ -116,11 +116,11 @@ def resize_img(img_ndarray):
 
     Parameters
     ----------
-    img_ndarray: 3D numpy ndarray, shape=[var, var, 1] (depending on drawing)
+    img_ndarray: 2D numpy ndarray, shape=(var, var) (depending on drawing)
         Image to resize.
     Returns
     -------
-    Resized image as 3D numpy ndarray
+    Resized image as 2D numpy ndarray (28x28)
     """
     img = Image.fromarray(img_ndarray)
     img.thumbnail((28, 28), Image.ANTIALIAS)
@@ -134,13 +134,13 @@ def min_max_scaler(img_ndarray, final_range=(0, 1)):
 
     Parameters
     ----------
-    img_ndarray: 3D numpy ndarray, shape=[28, 28, 1]
-        Image to scale and transform.
+    img_ndarray: 2D numpy ndarray, shape=(28, 28)
+        Image to scale and transform
     final_range: tuple (min, max), default=(0, 1)
-        Desired range of transformed data.
+        Desired range of transformed data
     Returns
     -------
-    Scaled and transformed image as 3D numpy ndarray
+    Scaled and transformed image as 2D numpy ndarray
     """
     px_min = final_range[0]
     px_max = final_range[1]
@@ -149,3 +149,19 @@ def min_max_scaler(img_ndarray, final_range=(0, 1)):
     # Hard code pixel vlue range
     img_std = img_ndarray / 255
     return img_std * (px_max - px_min) + px_min
+
+def reshape_array(img_ndarray):
+    """
+    Reshape image array for classifier.
+
+    Parameters
+    ----------
+    img_ndarray: 2D numpy ndarray, shape=(28, 28)
+        Image array to reshape.
+    Returns
+    -------
+    Reshaped image numpy ndarray
+    """
+
+    digit = np.reshape(img_ndarray, (-1, 28, 28, 1), order='C')
+    return digit
