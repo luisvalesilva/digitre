@@ -4,7 +4,7 @@
     Digitre
     ~~~~~~~
     A simple Machine Learning application to recognize handwritten digits.
-    
+
     :copyright: (c) 2016 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
@@ -21,7 +21,7 @@ from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
 import numpy as np
-import prep_digit_image as prep
+import digitre_preprocessing as prep
 
 
 app = Flask(__name__)

@@ -1,10 +1,12 @@
-#!/usr/bin/env python3
-# encoding:utf-8
+# -*- encoding: utf-8 -*-
 
 """
     Digitre
     ~~~~~~~
     A simple Machine Learning application to recognize handwritten digits.
+
+    digitre_preprocessing.py includes functionality to preprocess base64-encoded
+    images of handwritten digits and get them ready for classification.
 
     :copyright: (c) 2016 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
