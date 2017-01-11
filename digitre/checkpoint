@@ -1,0 +1,2 @@
+model_checkpoint_path: "cnn_alldata.tflearn"
+all_model_checkpoint_paths: "cnn_alldata.tflearn"
