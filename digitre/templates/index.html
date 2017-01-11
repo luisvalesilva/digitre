@@ -87,13 +87,16 @@
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="inner">
+				<div class="inner" style="max-width: 580px;">
 					<h2>About Digitre</h2>
 					<p>Digitre is written in Python using the <a href="http://flask.pocoo.org/Flask">Flask</a> web framework.
+						The front end uses Javascript to collect drawings in an HTML canvas element.
 						The Machine Learning model for handwritten digit recognition is a Convolutional Neural Network (CNN)
 						trained on the <a href="http://yann.lecun.com/exdb/mnist/">MNIST</a> dataset using the <a href="http://tflearn.org/">TFLearn</a>
 						software library. <a href="http://tflearn.org/">TFLearn</a> is a high level abstraction of <a href="https://www.tensorflow.org/">TensorFlow</a>,
-						an open source software library for numerical computation. After training, the CNN showed 98.92% accuracy on a test dataset.
+						an open source software library for numerical computation.
+					</p>
+					<p>After training, the CNN showed 98.92% accuracy on a test dataset.
 					</p>
 					<p><a href="https://github.com/luisvalesilva/digitre" class="icon fa-github fa-2x"></a><br />Source code</p>
 				</div>
