@@ -3151,7 +3151,7 @@
 
 		#footer a {
 			color: #dee1e3;
-			text-decoration: none;
+			text-decoration: underline;
 		}
 
 		#footer ul li {
