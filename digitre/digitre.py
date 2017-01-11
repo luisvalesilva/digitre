@@ -28,7 +28,7 @@ def get_digit():
     digit = request.args.get('digit', 0, type=str)
     digit = model.preprocess(digit)
     prediction = model.classify(digit)[0]
-    # Get class with highest probability 
+    # Get class with highest probability
     max_idx = np.argmax(prediction)
     max_val = prediction[max_idx]
     prob = np.around(max_val, 3) * 100
@@ -50,7 +50,6 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
