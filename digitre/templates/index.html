@@ -116,10 +116,10 @@
 			<script src="/static/assets/js/util.js"></script>
 			<script src="/static/assets/js/main.js"></script>
 			<script src="/static/paint.js"></script>
-			<script type=text/javascript>
+			<script type="text/javascript">
 				$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			</script>
-			<script type=text/javascript>
+			<script type="text/javascript">
 				$(function() {
 					$('a#push_data').bind('click', function() {
 						$.getJSON($SCRIPT_ROOT + '/_get_digit', {
