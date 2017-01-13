@@ -13,7 +13,7 @@ __author__ = "Luis Vale Silva"
 __status__ = "Development"
 
 
-from flask import Flask, render_template, request, jsonify, Markup
+from flask import Flask, render_template, request, jsonify
 import digitre_classifier
 import numpy as np
 
