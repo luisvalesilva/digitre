@@ -122,12 +122,12 @@
 			<script type="text/javascript">
 				$(function() {
 					$('a#push_data').bind('click', function() {
-						$.getJSON($SCRIPT_ROOT + '/_get_digit', {
+						$.post($SCRIPT_ROOT + '/_get_digit', JSON.stringify({
 						digit: $('textarea[id="data-paint"]').val()
-						}, function(data) {
+					}), function(data) {
 						$("#result").text(data.result);
 						$("#probability").text(data.probability);
-						});
+					}, 'json');
 						return false;
 					});
 				});
