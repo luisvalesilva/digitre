@@ -25,7 +25,7 @@ model = digitre_classifier.Classifier(file_name='cnn.tflearn')
 @app.route('/_get_digit', methods=['POST'])
 def get_digit():
     """Get digit drawn by user as base64 image and recognize it"""
-    digit = request.get_json(force=True).get('digit', '')
+    digit = request.get_json(force=True).get('digit')
     #digit = request.args.get('digit', 0, type=str)
     digit = model.preprocess(digit)
     prediction = model.classify(digit)[0]
