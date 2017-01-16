@@ -60,6 +60,7 @@ def b64_str_to_np(base64_str):
 
     buf = BytesIO()
     buf.write(base64.b64decode(base64_str))
+    buf.seek(0)
     pimg = Image.open(buf)
     img = np.array(pimg)
 
