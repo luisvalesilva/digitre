@@ -59,8 +59,6 @@ def load_data():
         testY: Test labels
 
     """
-    import tflearn.datasets.mnist as mnist
-
     X, Y, testX, testY = mnist.load_data(one_hot=True)
     X = X.reshape([-1, 28, 28, 1])
     testX = testX.reshape([-1, 28, 28, 1])
