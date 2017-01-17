@@ -122,7 +122,6 @@ def fit(model, X, Y, testX, testY, n_epoch=20, run_id='cnn_mnist'):
     run_id: str, default='cnn_mnist'
         ID to assign the current run
     """
-
     model.fit({'input': X}, {'target': Y}, n_epoch=n_epoch,
               validation_set=({'input': testX}, {'target': testY}),
               snapshot_step=100, show_metric=True, run_id=run_id)
@@ -138,7 +137,6 @@ def save(model, file_name='cnn.tflearn'):
     file_name: string, default='cnn.tflearn'
         Name to assign model file written to disk
     """
-
     cwd = os.path.dirname(__file__)
     model.save(os.path.join(cwd, file_name))
 

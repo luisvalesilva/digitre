@@ -81,5 +81,4 @@ class Classifier(object):
         -------
         Image as numpy 3D array
         """
-
         return self.model.predict(preprocessed_image)

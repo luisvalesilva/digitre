@@ -65,7 +65,6 @@ def b64_str_to_np(base64_str):
     -------
     Image as 2D numpy ndarray
     """
-
     if "base64" in base64_str:
         _, base64_str = base64_str.split(',')
 
@@ -174,6 +173,5 @@ def reshape_array(img_ndarray):
     -------
     Reshaped image numpy ndarray
     """
-
     digit = np.reshape(img_ndarray, (-1, 28, 28, 1), order='C')
     return digit
