@@ -122,6 +122,27 @@
 			<script type="text/javascript">
 				$(function() {
 					$('a#push_data').bind('click', function() {
+						$.ajax({
+						        url : $SCRIPT_ROOT + '/_get_digit',
+						        type: "POST",
+						        data: JSON.stringify([
+						            {digit: $('textarea[id="data-paint"]').val()}
+						        ]),
+						        contentType: "application/json; charset=utf-8",
+						        dataType: "json",
+						        success: function(data){
+											$("#result").text(data.result);
+											$("#probability").text(data.probability);
+						        }
+						    });
+					return false;
+					});
+				});
+			</script>
+			<!--
+			<script type="text/javascript">
+				$(function() {
+					$('a#push_data').bind('click', function() {
 						$.post($SCRIPT_ROOT + '/_get_digit', JSON.stringify({
 						digit: $('textarea[id="data-paint"]').val()
 					}), function(data) {
@@ -131,6 +152,6 @@
 					return false;
 					});
 				});
-			</script>
+			</script> -->
 	</body>
 </html>

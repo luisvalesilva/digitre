@@ -42,17 +42,6 @@ def print_elapsed_time(t0):
     else:
         print("{:2.1f} hr.".format(elapsed_time / 3600))
 
-def pad_b64(data):
-    """Add padding to base64, if required.
-
-    :param data: Base64 data as an ASCII byte string
-    :returns: The padded string.
-    """
-    missing_padding = len(data) % 4
-    if missing_padding != 0:
-        data += '=' * (4 - missing_padding)
-    return data
-
 def b64_str_to_np(base64_str):
     """
     Get digit drawn by user as base64 image and convert to numpy array.
@@ -65,6 +54,7 @@ def b64_str_to_np(base64_str):
     -------
     Image as 2D numpy ndarray
     """
+    base64_str = str(base64_str)
     if "base64" in base64_str:
         _, base64_str = base64_str.split(',')
 

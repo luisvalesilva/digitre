@@ -61,7 +61,6 @@ class Classifier(object):
         -------
         Processed image as numpy 3D array ready for classification
         """
-        digit = prep.pad_b64(digit_image)
         digit = prep.b64_str_to_np(digit_image)
         digit = prep.crop_img(digit)
         digit = prep.resize_img(digit)
