@@ -28,6 +28,7 @@ def get_digit():
     digit = request.get_json(force=True).get('digit')
     #digit = request.args.get('digit', 0, type=str)
     digit = model.preprocess(digit)
+    print(digit)
     prediction = model.classify(digit)[0]
     # Get class with highest probability
     max_idx = np.argmax(prediction)

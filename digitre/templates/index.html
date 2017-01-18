@@ -127,8 +127,8 @@
 					}), function(data) {
 						$("#result").text(data.result);
 						$("#probability").text(data.probability);
-					});
-						return false;
+					}, 'json');
+					return false;
 					});
 				});
 			</script>
