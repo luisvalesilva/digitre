@@ -1,1 +1,1 @@
-web: python3 digitre/digitre.py
+web: gunicorn app:digitre/digitre.py
