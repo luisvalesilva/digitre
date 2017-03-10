@@ -10,4 +10,4 @@ Git it a try at [digitre.technology](http://digitre.technology).
 
 ## License
 
-This project is licensed under the terms of the MIT license. Check the [LICENSE](LICENSE) file for the full license text.
+This project is licensed under the terms of the MIT license. See [LICENSE](LICENSE) file for details.
