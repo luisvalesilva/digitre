@@ -113,8 +113,9 @@ var extendCanvas = function (canvas) {
     };
 
     /**
-            * This method remove the event by default, to load them only when clicking in the canvas
-            */
+    * This method removes the event by default, to load it only when clicking in
+    the canvas
+    */
     function remove_event_listeners() {
       canvas.removeEventListener('mousemove', on_mousemove, false);
       canvas.removeEventListener('mouseup', on_mouseup, false);
