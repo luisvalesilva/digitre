@@ -20,6 +20,7 @@ import base64
 from io import BytesIO
 from PIL import Image
 import numpy as np
+from scipy import ndimage
 
 def print_elapsed_time(t0):
     """
@@ -67,13 +68,14 @@ def b64_str_to_np(base64_str):
     # Keep only 4th pixel value in 3rd dimension (first 3 are all zeros)
     return img[:, :, 3]
 
+
 def crop_img(img_ndarray):
     """
     Crop white space around digit.
 
     Parameters
     ----------
-    img_ndarray: 3D numpy ndarray, shape=(200, 200) (determined by canvas size)
+    img_ndarray: 2D numpy ndarray, shape=(var, var) (determined by canvas size)
         Image to crop (drawn by user).
     Returns
     -------
@@ -106,10 +108,45 @@ def crop_img(img_ndarray):
     last_col = middle_col + half_length
 
     # Crop image
-    img_ndarray = img_ndarray[first_row:last_row, first_col:last_col]
-    # Add padding (15px of zeros)
-    return np.lib.pad(img_ndarray, 15, 'constant', constant_values=(0))
+    return img_ndarray[first_row:last_row, first_col:last_col]
 
+
+def center_img(img_ndarray):
+    """
+    Center digit on center of mass of the pixels.
+
+    Parameters
+    ----------
+    img_ndarray: 2D numpy ndarray, shape=(var, var) (determined by digit size)
+        Image to center (drawn by user).
+    Returns
+    -------
+    Centered image as 2D numpy ndarray
+    """
+    # Compute center of mass and frame center
+    com = ndimage.measurements.center_of_mass(img_ndarray)
+    center = len(img_ndarray) / 2
+
+    # Center by adding lines of zeros matching diff between
+    # center of mass and frame center
+    row_diff = com[0] - center
+    col_diff = com[1] - center
+
+    rows = np.zeros((abs(int(row_diff)), len(img_ndarray)))
+    if row_diff > 0:
+        img_ndarray = np.vstack((img_ndarray, rows))
+    else:
+        img_ndarray = np.vstack((rows, img_ndarray))
+
+    cols = np.zeros((len(img_ndarray), abs(int(col_diff))))
+    if col_diff > 0:
+        img_ndarray = np.hstack((img_ndarray, cols))
+    else:
+        img_ndarray = np.hstack((cols, img_ndarray))
+
+    # TODO: Make image square again!!!
+    # Add padding all around (15px of zeros)
+    return np.lib.pad(img_ndarray, 15, 'constant', constant_values=(0))
 
 def resize_img(img_ndarray):
     """

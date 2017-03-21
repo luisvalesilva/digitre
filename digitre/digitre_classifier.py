@@ -63,6 +63,7 @@ class Classifier(object):
         """
         digit = prep.b64_str_to_np(digit_image)
         digit = prep.crop_img(digit)
+        digit = prep.center_img(digit)
         digit = prep.resize_img(digit)
         digit = prep.min_max_scaler(digit, final_range=(0, 1))
         digit = prep.reshape_array(digit)
