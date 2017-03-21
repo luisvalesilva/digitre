@@ -132,19 +132,37 @@ def center_img(img_ndarray):
     row_diff = com[0] - center
     col_diff = com[1] - center
 
-    rows = np.zeros((abs(int(row_diff)), len(img_ndarray)))
+    rows = np.zeros((abs(int(row_diff)), img_ndarray.shape[1]))
     if row_diff > 0:
         img_ndarray = np.vstack((img_ndarray, rows))
     else:
         img_ndarray = np.vstack((rows, img_ndarray))
 
-    cols = np.zeros((len(img_ndarray), abs(int(col_diff))))
+    cols = np.zeros((img_ndarray.shape[0], abs(int(col_diff))))
     if col_diff > 0:
         img_ndarray = np.hstack((img_ndarray, cols))
     else:
         img_ndarray = np.hstack((cols, img_ndarray))
 
-    # TODO: Make image square again!!!
+    # Make image square again (add zero rows to the smaller dimension)
+    dim_diff = img_ndarray.shape[0] - img_ndarray.shape[1]
+    half_A = half_B = int(dim_diff / 2)
+
+    if dim_diff % 2 != 0:
+        half_B += 1
+
+    # Add half to each side (to keep center of mass)
+    if dim_diff > 0:
+        half_A = np.zeros((img_ndarray.shape[0], abs(int(half_A))))
+        half_B = np.zeros((img_ndarray.shape[0], abs(int(half_B))))
+        img_ndarray = np.hstack((img_ndarray, half_A))
+        img_ndarray = np.hstack((half_B, img_ndarray))
+    else:
+        half_A = np.zeros((abs(int(half_A)), img_ndarray.shape[1]))
+        half_B = np.zeros((abs(int(half_B)), img_ndarray.shape[1]))
+        img_ndarray = np.vstack((img_ndarray, half_A))
+        img_ndarray = np.vstack((half_B, img_ndarray))
+
     # Add padding all around (15px of zeros)
     return np.lib.pad(img_ndarray, 15, 'constant', constant_values=(0))
 
