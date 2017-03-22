@@ -35,7 +35,7 @@ def get_digit():
     max_val = prediction[max_idx]
     prob = np.around(max_val, 3) * 100
     # Build output strings
-    if prob < 70:
+    if prob < 60:
         prediction = 'Huh...'
         probability = 'You call that a digit?'
     else:

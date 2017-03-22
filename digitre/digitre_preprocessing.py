@@ -65,7 +65,7 @@ def b64_str_to_np(base64_str):
     pimg = Image.open(buf)
     img = np.array(pimg)
 
-    # Keep only 4th pixel value in 3rd dimension (first 3 are all zeros)
+    # Keep only 4th value in 3rd dimension (first 3 are all zeros)
     return img[:, :, 3]
 
 
@@ -85,11 +85,11 @@ def crop_img(img_ndarray):
     # Across rows
     first_row = np.nonzero(img_ndarray)[0].min()
     last_row = np.nonzero(img_ndarray)[0].max()
-    middle_row = int(np.mean([last_row, first_row]))
+    middle_row = np.mean([last_row, first_row])
     # Across cols
     first_col = np.nonzero(img_ndarray)[1].min()
     last_col = np.nonzero(img_ndarray)[1].max()
-    middle_col = int(np.mean([last_col, first_col]))
+    middle_col = np.mean([last_col, first_col])
 
     # Crop by longest non-zero to make sure all is kept
     row_length = last_row - first_row
@@ -99,13 +99,13 @@ def crop_img(img_ndarray):
     length = max(length, 28)
 
     # Get half length to add to middle point (add some padding: 1px)
-    half_length = int(length / 2) + 1
+    half_length = (length / 2) + 1
 
     # Make sure even the shorter dimension is centered
-    first_row = middle_row - half_length
-    last_row = middle_row + half_length
-    first_col = middle_col - half_length
-    last_col = middle_col + half_length
+    first_row = int(middle_row - half_length)
+    last_row = int(middle_row + half_length)
+    first_col = int(middle_col - half_length)
+    last_col = int(middle_col + half_length)
 
     # Crop image
     return img_ndarray[first_row:last_row, first_col:last_col]
@@ -129,19 +129,19 @@ def center_img(img_ndarray):
 
     # Center by adding lines of zeros matching diff between
     # center of mass and frame center
-    row_diff = com[0] - center
-    col_diff = com[1] - center
+    row_diff = int(com[0] - center)
+    col_diff = int(com[1] - center)
 
-    rows = np.zeros((abs(int(row_diff)), img_ndarray.shape[1]))
+    rows = np.zeros((abs(row_diff), img_ndarray.shape[1]))
     if row_diff > 0:
         img_ndarray = np.vstack((img_ndarray, rows))
-    else:
+    elif row_diff < 0:
         img_ndarray = np.vstack((rows, img_ndarray))
 
-    cols = np.zeros((img_ndarray.shape[0], abs(int(col_diff))))
+    cols = np.zeros((img_ndarray.shape[0], abs(col_diff)))
     if col_diff > 0:
         img_ndarray = np.hstack((img_ndarray, cols))
-    else:
+    elif col_diff < 0:
         img_ndarray = np.hstack((cols, img_ndarray))
 
     # Make image square again (add zero rows to the smaller dimension)
@@ -157,7 +157,7 @@ def center_img(img_ndarray):
         half_B = np.zeros((img_ndarray.shape[0], abs(int(half_B))))
         img_ndarray = np.hstack((img_ndarray, half_A))
         img_ndarray = np.hstack((half_B, img_ndarray))
-    else:
+    elif dim_diff < 0:
         half_A = np.zeros((abs(int(half_A)), img_ndarray.shape[1]))
         half_B = np.zeros((abs(int(half_B)), img_ndarray.shape[1]))
         img_ndarray = np.vstack((img_ndarray, half_A))
@@ -201,8 +201,7 @@ def min_max_scaler(img_ndarray, final_range=(0, 1)):
     px_min = final_range[0]
     px_max = final_range[1]
 
-    #img_std = (img_ndarray - img_ndarray.min(axis=0)) / (img_ndarray.max(axis=0) - img_ndarray.min(axis=0))
-    # Hard code pixel vlue range
+    # Hard code pixel value range
     img_std = img_ndarray / 255
     return img_std * (px_max - px_min) + px_min
 
