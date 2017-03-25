@@ -34,12 +34,12 @@ def get_digit():
     max_idx = np.argmax(prediction)
     max_val = prediction[max_idx]
     prob = np.around(max_val, 3) * 100
-    # Build output strings
+    # Output strings
     if prob < 60:
         prediction = 'Huh...'
         probability = 'You call that a digit?'
     else:
-        prediction = '{}'.format(str(max_idx))
+        prediction = str(max_idx)
         probability = '({}% probability)'.format(str(prob))
 
     return jsonify(result=prediction, probability=probability)
