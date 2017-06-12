@@ -8,7 +8,7 @@
     digitre_classifier.py includes a class with functionality to preprocess base64-encoded
     handwritten digit images and classify the digit in the image.
 
-    :copyright: (c) 2016 by Luis Vale Silva.
+    :copyright: (c) 2017 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
 
@@ -28,6 +28,7 @@ class Classifier(object):
     html canvas by:
         . Converting it to numpy 3D array
         . Cropping it to square of minimum size around drawing (no smaller than of 28 x 28)
+        . Centering it on its center of mass
         . Resizing it to 28 x 28
         . MinMax transforming pixel values between 0 and 255 to values between 0 and 1
     It then uses pre-trained machine learning model to predict digit class, with the
@@ -51,7 +52,7 @@ class Classifier(object):
 
     def preprocess(self, digit_image):
         """
-        Get digit drawn by user as base64 image and convert it to numpy array.
+        Get digit drawn by user as base64 image and preprocess it for classification.
 
         Parameters
         ----------
@@ -71,7 +72,7 @@ class Classifier(object):
 
     def classify(self, preprocessed_image):
         """
-        Get digit drawn by user as base64 image and convert to numpy array.
+        Get a preprocessed digit drawn by user and classify it as a digit from 0 to 9.
 
         Parameters
         ----------
