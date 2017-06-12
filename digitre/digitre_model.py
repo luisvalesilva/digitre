@@ -25,7 +25,7 @@
         $ pip install $TF_BINARY_URL
 
 
-    :copyright: (c) 2016 by Luis Vale Silva.
+    :copyright: (c) 2017 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
 
