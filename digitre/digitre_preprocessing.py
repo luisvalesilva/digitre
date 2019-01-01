@@ -8,7 +8,7 @@
     digitre_preprocessing.py includes functionality to preprocess base64-encoded
     images of handwritten digits and get them ready for classification.
 
-    :copyright: (c) 2016 by Luis Vale Silva.
+    :copyright: (c) 2017 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
 

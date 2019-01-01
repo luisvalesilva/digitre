@@ -25,7 +25,7 @@
         $ pip install $TF_BINARY_URL
 
 
-    :copyright: (c) 2016 by Luis Vale Silva.
+    :copyright: (c) 2017 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
 
@@ -76,14 +76,14 @@ def build():
     ### Build CNN model
     cnn = input_data(shape=[None, 28, 28, 1], name='input')
     # 1st convolutional layer:
-    # Convolution computing 32 features for each 5x5 patch
+    # 32 5x5 filters
     # Stride of one and zero-padded convolutions (defaults)
     cnn = conv_2d(cnn, 32, 5, activation='relu', regularizer="L2")
     # Max pooling over 2x2 blocks
     cnn = max_pool_2d(cnn, 2)
     cnn = local_response_normalization(cnn)
     # 2nd convolutional layer:
-    # Convolution computing 64 features for each 5x5 patch
+    # 64 5x5 filters
     cnn = conv_2d(cnn, 64, 5, activation='relu', regularizer="L2")
     cnn = max_pool_2d(cnn, 2)
     cnn = local_response_normalization(cnn)

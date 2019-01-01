@@ -5,7 +5,7 @@
     ~~~~~~~
     A simple Machine Learning application to recognize handwritten digits.
 
-    :copyright: (c) 2016 by Luis Vale Silva.
+    :copyright: (c) 2017 by Luis Vale Silva.
     :license: MIT, see LICENSE for more details.
 """
 
