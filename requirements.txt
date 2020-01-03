@@ -13,7 +13,7 @@ protobuf==3.0.0
 pyparsing==2.1.10
 scipy==0.18.1
 six==1.10.0
-tensorflow==0.11.0rc1
+tensorflow==1.15.0
 tflearn==0.2.1
 uWSGI==2.0.14
 Werkzeug==0.16.0
