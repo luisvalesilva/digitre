@@ -6,7 +6,7 @@ The front end shows an html canvas where you are asked to draw a digit. **`Digit
 
 The ML model is a Convolutional Neural Network (CNN) trained on the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset using the [TFLearn](http://tflearn.org/) software library (a high level abstraction of Google's [TensorFlow](https://www.tensorflow.org/)).
 
-Give it a try at [digitre.technology](http://digitre.technology).
+Give it a try at [digitre.technology](http://digitre.technology). **Update (Oct 2020):** I have taken **`Digitre`** offline. You can try it locally using the instructions below.
 
 ## Try it locally
 
